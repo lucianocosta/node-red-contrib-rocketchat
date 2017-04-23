@@ -1,0 +1,60 @@
+<script type="text/x-red" data-template-name="rocketchat-in">
+    <div class="form-row">
+        <label for="node-input-host"><i class="fa fa-tasks"></i> Host</label>
+        <input type="text" id="node-input-host" placeholder="xxx.xxx.xxx.xxx">
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="fa fa-tasks"></i> Port</label>
+        <input type="text" id="node-input-port" placeholder="3000">
+    </div>
+    <div class="form-row">
+        <label for="node-input-user"><i class="fa fa-tasks"></i> User</label>
+        <input type="text" id="node-input-user" placeholder="User">
+    </div>
+    <div class="form-row">
+        <label for="node-input-password"><i class="fa fa-tasks"></i> Password</label>
+        <input type="password" id="node-input-password" placeholder="Password">
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="rocketchat-in">
+   <p>Simple sample input node. Just sends a single message when it starts up.
+   This is not very useful.</p>
+   <p>Outputs an object called <code>msg</code> containing <code>msg.topic</code> and
+   <code>msg.payload</code>. msg.payload is a String.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('rocketchat-in',{
+        category: 'social',
+        color: '#c1272d',
+        defaults: {
+            name: {value:""}
+        },
+        credentials: {
+            host: {
+                type: "text"
+            },
+            port: {
+                type: "text"
+            },
+            user: {
+                type: "text"
+            },
+            password: {
+                type: "password"
+            }
+        },
+        inputs: 0,
+        outputs: 1,
+        icon: "rocketchat.png",
+        label: function() {
+            return this.name || "rocketchat";
+        }
+    });
+</script>

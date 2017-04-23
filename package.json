@@ -1,0 +1,25 @@
+{
+  "name": "node-red-contrib-rocketchat",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuhito/node-red-contrib-rocketchat.git"
+  },
+  "keywords": [
+    "rocketchat",
+    "chat"
+  ],
+  "author": "zuhito",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zuhito/node-red-contrib-rocketchat/issues"
+  },
+  "homepage": "https://github.com/zuhito/node-red-contrib-rocketchat#readme",
+  "node-red": {
+    "nodes": {
+      "rocketchat-in": "rocketchat-in.js"
+    }
+  }
+}
