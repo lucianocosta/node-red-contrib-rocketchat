@@ -4,7 +4,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,n);
         var node = this;
         var previous_time = Date.parse(new Date());
-        var RocketChatApi = require('rocketchat-node').RocketChatApi;
+        var RocketChatApi = require('rocket-chat').RocketChatApi;
         var rocketChatApi = new RocketChatApi('http', this.credentials.host, this.credentials.port, this.credentials.user, this.credentials.password, "v1");
         setInterval(function() {
             rocketChatApi.getPublicRooms(function(err, body) {
