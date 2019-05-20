@@ -164,7 +164,7 @@ var RocketChatApi = function (protocol, host, port, username, password, version)
             if (response.statusCode !== 200) {
                 return (responseHandler.unknownError)
                     ? callback(new Error(responseHandler.unknownError))
-                    : callback(new Error("STATUS_CODE=" + response.statusCode + ": an unknown error has occured"));                
+                    : callback(new Error("STATUS_CODE=" + response.statusCode + ": an unknown error has occured"));
             }
 
             if (body === undefined) {
@@ -173,8 +173,8 @@ var RocketChatApi = function (protocol, host, port, username, password, version)
                     : callback(null);
             }
 
-            callback(null, responseHandler.body 
-                ? responseHandler.body(body) 
+            callback(null, responseHandler.body
+                ? responseHandler.body(body)
                 : JSON.parse(body));
         });
     }

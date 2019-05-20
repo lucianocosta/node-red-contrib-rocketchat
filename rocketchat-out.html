@@ -1,11 +1,11 @@
-<script type="text/x-red" data-template-name="rocketchat-in">
+<script type="text/x-red" data-template-name="rocketchat-out">
   <div class="form-row">
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
   </div>
   <div class="form-row">
     <label for="node-input-host"><i class="fa fa-tasks"></i> Host</label>
-    <input type="text" id="node-input-host" placeholder="xxx.xxx.xxx.xxx">
+    <input type="text" id="node-input-host" placeholder="open.rocket.chat">
   </div>
   <div class="form-row">
     <label for="node-input-port"><i class="fa fa-tasks"></i> Port</label>
@@ -17,20 +17,20 @@
   </div>
   <div class="form-row">
     <label for="node-input-user"><i class="fa fa-tasks"></i> User</label>
-    <input type="text" id="node-input-user" placeholder="User">
+    <input type="text" id="node-input-user" placeholder="you@email.com">
   </div>
   <div class="form-row">
     <label for="node-input-password"><i class="fa fa-tasks"></i> Password</label>
-    <input type="password" id="node-input-password" placeholder="Password">
+    <input type="password" id="node-input-password" placeholder="p4ssw0rd">
   </div>
 </script>
 
-<script type="text/x-red" data-help-name="rocketchat-in">
-  <p>Checks for new messages in a Rocket.Chat room</p>
+<script type="text/x-red" data-help-name="rocketchat-out">
+   <p>Sends a message to a Rocket.Chat room.</p>
 </script>
 
 <script type="text/javascript">
-  RED.nodes.registerType('rocketchat-in', {
+  RED.nodes.registerType('rocketchat-out',{
     category: 'social',
     color: '#E29192',
     defaults: {
@@ -43,11 +43,16 @@
     credentials: {
       password: {type: "password"}
     },
+    oneditprepare: function () {
+    },
+    oneditsave: function () {
+    },
     inputs: 1,
-    outputs: 1,
+    outputs: 0,
     icon: "rocketchat.png",
-    label: function() {
-      return this.name || "rocketchat";
+    align: "right",
+    label: function () {
+      return this.name || "Rocket.Chat";
     }
   });
 </script>
