@@ -1,0 +1,34 @@
+<script type="text/x-red" data-template-name="rocketchat-server">
+  <div class="form-row">
+    <label for="node-config-input-host"><i class="fa fa-tasks"></i> Host</label>
+    <input type="text" id="node-config-input-host" placeholder="http://your-rocket.chat:3000">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-user"><i class="fa fa-tasks"></i> User</label>
+    <input type="text" id="node-config-input-user" placeholder="User">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-password"><i class="fa fa-tasks"></i> Password</label>
+    <input type="password" id="node-config-input-password" placeholder="Password">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="rocketchat-server">
+  <p>Rocket.Chat server settings</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('rocketchat-server', {
+    category: 'config',
+    defaults: {
+      host: {value:'', required: true},
+      user: {value:'', required: true}
+    },
+    credentials: {
+      password: {type: 'password', required: true}
+    },
+    label: function () {
+      return this.user + '@' + this.host;
+    }
+  });
+</script>

@@ -4,11 +4,20 @@ module.exports = function (RED) {
   function RocketChatOut(n) {
     RED.nodes.createNode(this, n);
     const node = this;
-    let host = n.host.replace("http://", "").replace("https://", "");
     const RocketChatApi = require('./rocket-chat').RocketChatApi;
-    const rocketChatApi = new RocketChatApi('http', host, n.port, n.user, this.credentials.password, "v1");
 
     node.on('input', function (msg) {
+      node.server = RED.nodes.getNode(n.server); // Retrieve the config node
+      if (node.server.host.indexOf('http') < 0) {
+        node.server.host = 'http://' + node.server.host;
+      }
+      let url;
+      try {
+        url = new URL(node.server.host);
+      } catch (e) {
+        node.error(e, msg);
+      }
+      let rocketChatApi = new RocketChatApi(url.protocol, url.hostname, url.port, node.server.user, node.server.credentials.password, "v1");
       rocketChatApi.getPublicRooms(function (err, body) {
         if (!err) {
           node.status({fill: "blue", shape: "dot", text: "Connected"});
@@ -27,9 +36,5 @@ module.exports = function (RED) {
     });
   }
 
-  RED.nodes.registerType("rocketchat-out", RocketChatOut, {
-    credentials: {
-      password: {type: "password"}
-    }
-  });
+  RED.nodes.registerType("rocketchat-out", RocketChatOut);
 }

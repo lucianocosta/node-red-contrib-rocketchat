@@ -4,24 +4,12 @@
     <input type="text" id="node-input-name" placeholder="Name">
   </div>
   <div class="form-row">
-    <label for="node-input-host"><i class="fa fa-tasks"></i> Host</label>
-    <input type="text" id="node-input-host" placeholder="xxx.xxx.xxx.xxx">
-  </div>
-  <div class="form-row">
-    <label for="node-input-port"><i class="fa fa-tasks"></i> Port</label>
-    <input type="text" id="node-input-port" placeholder="3000">
+    <label for="node-input-server"><i class="fa fa-tasks"></i> Server</label>
+    <input type="text" id="node-input-server" placeholder="">
   </div>
   <div class="form-row">
     <label for="node-input-room"><i class="fa fa-tasks"></i> Room</label>
     <input type="text" id="node-input-room" placeholder="room's name">
-  </div>
-  <div class="form-row">
-    <label for="node-input-user"><i class="fa fa-tasks"></i> User</label>
-    <input type="text" id="node-input-user" placeholder="User">
-  </div>
-  <div class="form-row">
-    <label for="node-input-password"><i class="fa fa-tasks"></i> Password</label>
-    <input type="password" id="node-input-password" placeholder="Password">
   </div>
 </script>
 
@@ -35,19 +23,14 @@
     color: '#E29192',
     defaults: {
       name: {value:""},
-      host: {value:""},
-      port: {value:""},
-      user: {value:""},
+      server: {value:"", type:"rocketchat-server"},
       room: {value:""}
-    },
-    credentials: {
-      password: {type: "password"}
     },
     inputs: 1,
     outputs: 1,
     icon: "rocketchat.png",
     label: function() {
-      return this.name || "rocketchat";
+      return this.name || "Rocket.Chat";
     }
   });
 </script>

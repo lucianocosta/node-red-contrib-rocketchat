@@ -16,7 +16,8 @@
   "node-red": {
     "nodes": {
       "rocketchat-in": "rocketchat-in.js",
-      "rocketchat-out": "rocketchat-out.js"
+      "rocketchat-out": "rocketchat-out.js",
+      "rocketchat-server": "rocketchat-server.js"
     }
   },
   "dependencies": {

@@ -4,29 +4,17 @@
     <input type="text" id="node-input-name" placeholder="Name">
   </div>
   <div class="form-row">
-    <label for="node-input-host"><i class="fa fa-tasks"></i> Host</label>
-    <input type="text" id="node-input-host" placeholder="open.rocket.chat">
-  </div>
-  <div class="form-row">
-    <label for="node-input-port"><i class="fa fa-tasks"></i> Port</label>
-    <input type="text" id="node-input-port" placeholder="3000">
+    <label for="node-input-server"><i class="fa fa-tasks"></i> Server</label>
+    <input type="text" id="node-input-server" placeholder="">
   </div>
   <div class="form-row">
     <label for="node-input-room"><i class="fa fa-tasks"></i> Room</label>
     <input type="text" id="node-input-room" placeholder="room's name">
   </div>
-  <div class="form-row">
-    <label for="node-input-user"><i class="fa fa-tasks"></i> User</label>
-    <input type="text" id="node-input-user" placeholder="you@email.com">
-  </div>
-  <div class="form-row">
-    <label for="node-input-password"><i class="fa fa-tasks"></i> Password</label>
-    <input type="password" id="node-input-password" placeholder="p4ssw0rd">
-  </div>
 </script>
 
 <script type="text/x-red" data-help-name="rocketchat-out">
-   <p>Sends a message to a Rocket.Chat room.</p>
+  <p>Sends a message to a Rocket.Chat room.</p>
 </script>
 
 <script type="text/javascript">
@@ -35,17 +23,8 @@
     color: '#E29192',
     defaults: {
       name: {value:""},
-      host: {value:""},
-      port: {value:""},
-      user: {value:""},
+      server: {value:"", type:"rocketchat-server"},
       room: {value:""}
-    },
-    credentials: {
-      password: {type: "password"}
-    },
-    oneditprepare: function () {
-    },
-    oneditsave: function () {
     },
     inputs: 1,
     outputs: 0,

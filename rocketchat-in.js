@@ -8,9 +8,17 @@ module.exports = function (RED) {
     let previous_time = Date.parse(new Date());
 
     node.on('input', function (msg) {
-      let host = n.host.replace("http://","").replace("https://","");
-      let rocketChatApi = new RocketChatApi('http', host, n.port, n.user, this.credentials.password, "v1");
-
+      node.server = RED.nodes.getNode(n.server); // Retrieve the config node
+      if (node.server.host.indexOf('http') < 0) {
+        node.server.host = 'http://' + node.server.host;
+      }
+      let url;
+      try {
+        url = new URL(node.server.host);
+      } catch (e) {
+        node.error(e, msg);
+      }
+      let rocketChatApi = new RocketChatApi(url.protocol, url.hostname, url.port, node.server.user, node.server.credentials.password, "v1");
       rocketChatApi.getPublicRooms(function (err, body) {
         if (!err) {
           node.status({fill: "blue", shape: "dot", text: "Connected"});
@@ -28,7 +36,7 @@ module.exports = function (RED) {
                 }
                 previous_time = ts_max;
               } else {
-                node.error(err2);
+                node.error(err2, msg);
                 node.status({fill: "red", shape: "ring", text: "Error: " + err2});
               }
             });
@@ -38,17 +46,13 @@ module.exports = function (RED) {
             node.status({fill: "red", shape: "ring", text: "Error: " + e});
           }
         } else {
-          node.error("Failed to get Rocket.Chat public rooms.", err);
+          node.error("Failed to get Rocket.Chat public rooms. " + err, msg);
           node.status({fill: "red", shape: "ring", text: "Error: " + err});
         }
       });
     });
   }
 
-  RED.nodes.registerType("rocketchat-in", RocketChatIn, {
-    credentials: {
-      password: {type: "password"}
-    }
-  });
+  RED.nodes.registerType("rocketchat-in", RocketChatIn);
 
 };
